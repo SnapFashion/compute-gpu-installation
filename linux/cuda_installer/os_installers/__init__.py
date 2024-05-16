@@ -160,7 +160,7 @@ class LinuxInstaller(metaclass=abc.ABCMeta):
                 )
                 self.run(f"sh {installer_path} --extract={temp_dir}", check=True)
                 installer_path = pathlib.Path(
-                    f"{temp_dir}/NVIDIA-Linux-x86_64-550.54.15.run"
+                    f"{temp_dir}/NVIDIA-Linux-x86_64-530.30.02.run"
                 )
 
             logger.info("Starting uninstallation...")
@@ -282,7 +282,7 @@ class LinuxInstaller(metaclass=abc.ABCMeta):
                 )
                 self.run(f"tar -xf {samples_tar.name}")
                 with chdir(
-                    temp_dir / "cuda-samples-12.4.1/Samples/1_Utilities/deviceQuery"
+                    temp_dir / "cuda-samples-12.1/Samples/1_Utilities/deviceQuery"
                 ):
                     self.run("make", check=True)
                     dev_query = self.run("./deviceQuery", check=True)
@@ -292,7 +292,7 @@ class LinuxInstaller(metaclass=abc.ABCMeta):
                         )
                         return False
                 with chdir(
-                    temp_dir / "cuda-samples-12.4.1/Samples/1_Utilities/bandwidthTest"
+                    temp_dir / "cuda-samples-12.1/Samples/1_Utilities/bandwidthTest"
                 ):
                     self.run("make", check=True)
                     bandwidth = self.run("./bandwidthTest", check=True)
